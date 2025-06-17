@@ -1,0 +1,24 @@
+services:
+  db:
+    container_name: SpringLogin
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: kailan
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - login_volume:/var/lib/docker/volumes/login_volume/_data
+    ports:
+      - "5332:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  login_volume:
+
